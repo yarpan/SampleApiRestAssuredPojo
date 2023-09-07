@@ -1,10 +1,10 @@
 package tests_vary;
 
-import com.github.javafaker.Faker;
-import controllers.OwnerController;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import models.OwnerCreatePojo;
+import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,42 +12,35 @@ import java.util.List;
 
 public class TestWithJsonPath {
 
-    OwnerController ownerController = new OwnerController();
-    Faker faker = new Faker();
+    @Test
+    @DisplayName("Creating Owner of a Pet via API")
+    public void getUsersList() {
+        var targetOwnerResponse = getListOfUsersResponse();
 
-    private OwnerCreatePojo createRandomDataForOwner() {
-        return OwnerCreatePojo.builder()
-                .firstName(faker.name().firstName())
-                .lastName(faker.name().lastName())
-                .address(faker.address().streetAddress())
-                .city(faker.address().city())
-                .telephone(faker.numerify("##########"))
-                .build();
+        JsonPath jsonPath = rawToJson(targetOwnerResponse);
+        //extracting list of emails for each user
+        List<String> listOfUsersEmails = jsonPath.getList("data.email");
+        System.out.println("listOfUsersEmails = " + listOfUsersEmails.toString());
+
+        Assertions.assertEquals(200, targetOwnerResponse.statusCode());
+    }
+
+    public Response getListOfUsersResponse() {
+        return basicApiClient()
+                .when()
+                .get("/api/users?page=2");
+    }
+
+    public static RequestSpecification basicApiClient() {
+        return RestAssured.given()
+                .baseUri("https://reqres.in")
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON);
     }
 
     public static JsonPath rawToJson(Response response){
         return new JsonPath(String.valueOf(response.asString()));
     }
-
-
-    @Test
-    @DisplayName("Creating Owner of a Pet via API")
-    public void createNewOwner() {
-
-        var sourceOwnerPojo = createRandomDataForOwner();
-        System.out.println("sourceOwnerPojo = " + sourceOwnerPojo.toString());
-
-        var targetOwnerResponse = ownerController.createOwner(sourceOwnerPojo);
-        System.out.println("targetOwnerResponse = " + targetOwnerResponse.asString());
-
-        JsonPath jsonPath = rawToJson(targetOwnerResponse);
-        int newOwnerId = jsonPath.getInt("id");
-        System.out.println("newOwnerId = " + newOwnerId);
-
-        Assertions.assertEquals(201, targetOwnerResponse.statusCode());
-
-    }
-
 
 
 }

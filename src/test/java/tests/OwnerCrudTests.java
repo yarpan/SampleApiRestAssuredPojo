@@ -45,8 +45,31 @@ public class OwnerCrudTests extends BaseTest{
         System.out.println("newOwnerId = " + newOwnerID);
     }
 
+    @Test
+    @DisplayName("Creating Owner of a Pet via API")
+    public void getOwnerById(){
+
+    }
+
+    @Test
+    @DisplayName("Creating Owner of a Pet via API")
+    public void getListOfOwners(){
+
+    }
+
+    @Test
+    @DisplayName("Creating Owner of a Pet via API")
+    public void putChangeToOwner(){
 
 
+    }
+
+    @Test
+    @DisplayName("Creating Owner of a Pet via API")
+    public void deleteOwner(){
+
+
+    }
 
 
 
