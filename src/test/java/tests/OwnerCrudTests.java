@@ -1,6 +1,5 @@
 package tests;
 
-import com.github.javafaker.Faker;
 import controllers.OwnerController;
 import models.OwnerCreatePojo;
 import org.junit.jupiter.api.Assertions;
@@ -10,27 +9,12 @@ import org.junit.jupiter.api.Test;
 
 public class OwnerCrudTests extends BaseTest{
 
-    OwnerController ownerController = new OwnerController();
-    Faker faker = new Faker();
-    int newOwnerID;
-
-    private OwnerCreatePojo createRandomDataForOwner() {
-        return OwnerCreatePojo.builder()
-                .firstName(faker.name().firstName())
-                .lastName(faker.name().lastName())
-                .address(faker.address().streetAddress())
-                .city(faker.address().city())
-                .telephone(faker.numerify("##########"))
-                .build();
-    }
-
-
 
     @Test
     @DisplayName("Creating Owner of a Pet via API")
     public void createNewOwner() {
-
-        var sourceOwnerPojo = createRandomDataForOwner();
+        var ownerController = new OwnerController();
+        var sourceOwnerPojo = ownerController.createRandomDataForOwner();
         System.out.println("sourceOwnerPojo = " + sourceOwnerPojo.toString());
 
         var targetOwnerResponse = ownerController.createOwner(sourceOwnerPojo);
@@ -41,7 +25,7 @@ public class OwnerCrudTests extends BaseTest{
         Assertions.assertEquals(sourceOwnerPojo.getFirstName(), targetOwnerPojo.getFirstName());
         Assertions.assertEquals(sourceOwnerPojo.getLastName(), targetOwnerPojo.getLastName());
 
-        newOwnerID = targetOwnerPojo.getId();
+        var newOwnerID = targetOwnerPojo.getId();
         System.out.println("newOwnerId = " + newOwnerID);
     }
 
