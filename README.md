@@ -5,5 +5,5 @@
 
 **STATUS:** In Progres ...
 
-**STACK:** Java, RestAssured, Gradle Groovy, Junit5, Jackson, POJO DTO
+**STACK:** Java, RestAssured, Gradle Groovy, Junit5, Jackson, Lombok, POJO DTO
 
