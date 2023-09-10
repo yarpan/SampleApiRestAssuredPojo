@@ -12,13 +12,17 @@ public class BaseController {
 
 
     public static RequestSpecification basicApiClient() {
-        RestAssured.registerParser("text/plain", Parser.JSON);
-        RestAssured.registerParser("application/json", Parser.JSON);
+        //RestAssured.registerParser("text/plain", Parser.JSON);
+        //RestAssured.registerParser("application/json", Parser.JSON);
         return RestAssured.given()
                 .baseUri(Endpoints.BASE_URI)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON);
     }
+
+
+
+
 
 
 }

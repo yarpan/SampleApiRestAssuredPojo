@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OwnerCreatePojo {
+public class OwnerDto {
     private List<PetsItem> pets;
     private String firstName;
     private String lastName;

@@ -24,11 +24,9 @@ public class BaseTest {
             System.out.println("stringToPrint = " + stringToPrint);
     }
 
-
     public static JsonPath rawToJson(Response response) {
         return new JsonPath(String.valueOf(response.asString()));
     }
-
 
     private String toJson(Object sourcePojo) {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

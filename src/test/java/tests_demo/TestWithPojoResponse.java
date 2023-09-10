@@ -1,4 +1,4 @@
-package tests_vary;
+package tests_demo;
 
 public class TestWithPojoResponse {
 

@@ -1,10 +1,10 @@
-package tests_vary;
+package tests_demo;
 
 import com.github.javafaker.Faker;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import models.OwnerCreatePojo;
+import models.OwnerDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ public class RestAssuredBasicTest {
     @DisplayName("Creating Owner of a Pet via API")
     public void createNewOwner() {
         Faker faker = new Faker();
-        var sourceOwnerPojo = OwnerCreatePojo.builder()
+        var sourceOwnerPojo = OwnerDto.builder()
                 .firstName(faker.name().firstName())
                 .lastName(faker.name().lastName())
                 .address(faker.address().streetAddress())

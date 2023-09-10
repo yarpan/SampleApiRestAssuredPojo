@@ -1,4 +1,4 @@
-package tests_vary;
+package tests_demo;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
