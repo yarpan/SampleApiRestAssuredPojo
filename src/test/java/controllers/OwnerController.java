@@ -2,7 +2,10 @@ package controllers;
 
 import com.github.javafaker.Faker;
 import data.Endpoints;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import models.OwnerDto;
 
 public class OwnerController extends BaseController {
@@ -11,6 +14,7 @@ public class OwnerController extends BaseController {
         return basicApiClient()
                 .get(Endpoints.ENDPOINT_OWNERS + "/{ownerId}", id);
     }
+
 
     public Response postRequest(OwnerDto body) {
         return basicApiClient()
@@ -44,6 +48,16 @@ public class OwnerController extends BaseController {
                 .telephone(faker.numerify("##########"))
                 .build();
     }
+
+
+    public Response getListCustomHeaderRequest (String headerKey, String headerValue) {
+        return RestAssured.given()
+                .baseUri(Endpoints.BASE_URI)
+                .header(headerKey, headerValue)
+                .when()
+                .get(Endpoints.ENDPOINT_OWNERS);
+    }
+
 
 
 }
