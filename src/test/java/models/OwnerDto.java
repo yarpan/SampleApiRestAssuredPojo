@@ -1,6 +1,7 @@
 package models;
 
 import java.util.List;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,6 +19,19 @@ public class OwnerDto {
     private String city;
     private String telephone;
     private Integer id;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OwnerDto)) return false;
+        OwnerDto ownerDto = (OwnerDto) o;
+        return Objects.equals(firstName, ownerDto.firstName) && Objects.equals(lastName, ownerDto.lastName) && Objects.equals(address, ownerDto.address) && Objects.equals(city, ownerDto.city) && Objects.equals(telephone, ownerDto.telephone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, address, city, telephone);
+    }
 
     @Data
     @Builder

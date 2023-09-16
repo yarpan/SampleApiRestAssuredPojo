@@ -38,15 +38,9 @@ public class OwnerController extends BaseController {
     }
 
 
-    public OwnerDto generateRandomOwnerDto() {
-        Faker faker = new Faker();
-        return OwnerDto.builder()
-                .firstName(faker.name().firstName())
-                .lastName(faker.name().lastName())
-                .address(faker.address().streetAddress())
-                .city(faker.address().city())
-                .telephone(faker.numerify("##########"))
-                .build();
+    public Response getListRequest() {
+        return basicApiClient()
+                .get(Endpoints.ENDPOINT_OWNERS);
     }
 
 
@@ -59,5 +53,18 @@ public class OwnerController extends BaseController {
     }
 
 
+
+
+
+    public OwnerDto generateRandomOwnerDto() {
+        Faker faker = new Faker();
+        return OwnerDto.builder()
+                .firstName(faker.name().firstName())
+                .lastName(faker.name().lastName())
+                .address(faker.address().streetAddress())
+                .city(faker.address().city())
+                .telephone(faker.numerify("##########"))
+                .build();
+    }
 
 }
