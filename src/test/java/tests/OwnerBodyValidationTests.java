@@ -6,7 +6,7 @@ import models.OwnerDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class OwnerBodyValidationTests {
+public class OwnerBodyValidationTests extends BaseTest {
 
     @Test
     public void CreateOwnerOneLetterFirstNameTest() {
@@ -28,7 +28,8 @@ public class OwnerBodyValidationTests {
         //assert
         Assertions.assertEquals(201, responsePostRaw.statusCode());
         Assertions.assertEquals(responsePostDto, requestPostDto);
-
+        System.out.println("\n " + convertDtoToJson(requestPostDto));
+        System.out.println("\n " + convertDtoToJson(responsePostDto));
     }
 
 
@@ -52,6 +53,8 @@ public class OwnerBodyValidationTests {
         //assert
         Assertions.assertEquals(201, responsePostRaw.statusCode());
         Assertions.assertEquals(responsePostDto, requestPostDto);
+        System.out.println("\n " + convertDtoToJson(requestPostDto));
+        System.out.println("\n " + convertDtoToJson(responsePostDto));
     }
 
 
@@ -75,6 +78,8 @@ public class OwnerBodyValidationTests {
         //assert
         Assertions.assertEquals(201, responsePostRaw.statusCode());
         Assertions.assertEquals(responsePostDto, requestPostDto);
+        System.out.println("\n " + convertDtoToJson(requestPostDto));
+        System.out.println("\n " + convertDtoToJson(responsePostDto));
     }
 
 
@@ -98,6 +103,8 @@ public class OwnerBodyValidationTests {
         //assert
         Assertions.assertEquals(201, responsePostRaw.statusCode());
         Assertions.assertEquals(responsePostDto, requestPostDto);
+        System.out.println("\n " + convertDtoToJson(requestPostDto));
+        System.out.println("\n " + convertDtoToJson(responsePostDto));
     }
 
 
@@ -122,6 +129,8 @@ public class OwnerBodyValidationTests {
         //assert
         Assertions.assertEquals(201, responsePostRaw.statusCode());
         Assertions.assertEquals(responsePostDto, requestPostDto);
+        System.out.println("\n " + convertDtoToJson(requestPostDto));
+        System.out.println("\n " + convertDtoToJson(responsePostDto));
     }
 
 
@@ -145,6 +154,8 @@ public class OwnerBodyValidationTests {
         //assert
         Assertions.assertEquals(201, responsePostRaw.statusCode());
         Assertions.assertEquals(responsePostDto, requestPostDto);
+        System.out.println("\n " + convertDtoToJson(requestPostDto));
+        System.out.println("\n " + convertDtoToJson(responsePostDto));
     }
 
 
@@ -168,7 +179,10 @@ public class OwnerBodyValidationTests {
         //assert
         Assertions.assertEquals(201, responsePostRaw.statusCode());
         Assertions.assertEquals(responsePostDto, requestPostDto);
+        System.out.println("\n " + convertDtoToJson(requestPostDto));
+        System.out.println("\n " + convertDtoToJson(responsePostDto));
     }
+
 
 
 

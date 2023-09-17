@@ -3,6 +3,8 @@ package tests;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
@@ -24,20 +26,30 @@ public class BaseTest {
             System.out.println("stringToPrint = " + stringToPrint);
     }
 
-    public static JsonPath rawToJson(Response response) {
-        return new JsonPath(String.valueOf(response.asString()));
+    public JsonPath convertRawToJson(Object sourceObject) {
+        return new JsonPath(String.valueOf(sourceObject.toString()));
     }
 
-    private String toJson(Object sourcePojo) {
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+    public String convertToJson(Object sourceObject) {
+        ObjectWriter mapper = new ObjectMapper().writer().withDefaultPrettyPrinter();
         try {
-            String jsonBody = ow.writeValueAsString(sourcePojo);
-            System.out.println("jsonBody = " + jsonBody);
-            return jsonBody;
+            return mapper.writeValueAsString(sourceObject);
         } catch (JsonProcessingException e) {
-            //throw new RuntimeException(e);
-            return null;
+            throw new RuntimeException(e);
         }
     }
+
+    public String convertDtoToJson(Object sourceObject){
+        ObjectMapper mapper = new JsonMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        try {
+            return mapper.writeValueAsString(sourceObject);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
 
 }
