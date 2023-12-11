@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 
 public class BaseTest {
 
