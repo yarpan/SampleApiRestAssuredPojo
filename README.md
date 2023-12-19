@@ -1,7 +1,7 @@
 
 **NAME:** Sample Api RestAssured POJO
 
-**TYPE:** Sample Project for mentoring purpose
+**TYPE:** Sample Project for learning purpose
 
 **STATUS:** In Progres ...
 
