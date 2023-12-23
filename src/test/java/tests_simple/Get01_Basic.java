@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import static org.hamcrest.Matchers.*;
 import static io.restassured.RestAssured.given;
 
+
 public class Get01_Basic {
     private static final String myBaseUrl = "https://dev.emeli.in.ua/";
     private static final String endPointGet = "/wp-json/wp/v2/posts/{postId}";
