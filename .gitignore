@@ -3,7 +3,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-src/test/java/tests_simple/TestData.java
+src/test/java/data/TestData.java
 
 
 ### IntelliJ IDEA ###
