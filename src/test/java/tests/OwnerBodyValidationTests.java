@@ -108,7 +108,6 @@ public class OwnerBodyValidationTests extends BaseTest {
     }
 
 
-
     @Test
     public void CreateOwnerAddressWithSpecialSymbolsTest() {
         //arrange
