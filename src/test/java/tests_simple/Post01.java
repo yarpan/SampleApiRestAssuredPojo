@@ -1,6 +1,6 @@
 package tests_simple;
 
-import data.TestData;
+import data.TestCredentials;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.apache.commons.codec.binary.Base64;
@@ -32,7 +32,7 @@ public class Post01 {
                 "content": "%s"
             }
              """.formatted(EXPECTED_TITLE, EXPECTED_CONTENT);
-    String credentials = new String(Base64.encodeBase64((TestData.USERNAME + ":" + TestData.PASSWORD).getBytes()));
+    String credentials = new String(Base64.encodeBase64((TestCredentials.USERNAME + ":" + TestCredentials.PASSWORD).getBytes()));
 
     @BeforeAll
     public static void beforeTest() {

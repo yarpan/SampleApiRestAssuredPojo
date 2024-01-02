@@ -17,11 +17,11 @@ public class ApiTests {
     private static final String UPDATED_TITLE = "Updated Put";
     private static final String EXPECTED_CONTENT = "New content for new POST";
     private static final String UPDATED_CONTENT = "Updated content by PUT";
-    private static final String JSON_EMPTY_ERROR = "JSON_EMPTY_ERROR";
     private ApiPage apiPage = new ApiPage();
     SoftAssertions softly = new SoftAssertions();
+    public int postId = 11528;
 
-    private int postId;
+//Class ApiPagePost
 
     @Test
     public void createNewPostTest() {
@@ -31,13 +31,10 @@ public class ApiTests {
         Map<String, String> firstKey = gtTranslateKeys.get(0);
 
         softly.assertThat(response.getStatusCode()).as("status code").isEqualTo(EXPECTED_STATUS_CODE_POST);
-
         softly.assertThat(firstKey.get("key")).as("gt_translate_keys key").isEqualTo("rendered");
         softly.assertThat(firstKey.get("format")).as("gt_translate_keys format").isEqualTo("text");
-
         softly.assertThat(actualId).as("ID").isNotNull();
         softly.assertThat(actualId).as("ID should be an Integer").isInstanceOf(Integer.class);
-
         softly.assertThat((Object) response.path("date")).as("Date").isNotNull();
         softly.assertThat((Object) response.path("status")).as("Status").isEqualTo("draft");
 
@@ -47,12 +44,15 @@ public class ApiTests {
 
         System.out.println("Create Post finished");
         softly.assertAll();
-        postId = actualId;
+        //postId = actualId;
+        System.out.println("actualId = " + actualId);
     }
 
     @Test
     public void updatePostTest() {
         Response response = apiPage.updatePost(UPDATED_TITLE, UPDATED_CONTENT, postId);
+        System.out.println("postId = " + postId);
+        System.out.println(response.asString());
         List<Map<String, String>> gtTranslateKeys = response.jsonPath().getList("title.gt_translate_keys");
         String actualIds = response.jsonPath().getString("id");
         System.out.println("actualIds = " + actualIds);
@@ -61,15 +61,12 @@ public class ApiTests {
         Map<String, String> firstKey = gtTranslateKeys.get(0);
 
         softly.assertThat(response.getStatusCode()).as("status code").isEqualTo(EXPECTED_STATUS_CODE_PUT);
-
         softly.assertThat(firstKey.get("key")).as("gt_translate_keys key").isEqualTo("rendered");
         softly.assertThat(firstKey.get("format")).as("gt_translate_keys format").isEqualTo("text");
-
         softly.assertThat(actualId).as("ID").isNotNull();
         softly.assertThat(actualId).as("ID should be an Integer").isInstanceOf(Integer.class);
-
         softly.assertThat((Object) response.path("date")).as("Date").isNotNull();
-        softly.assertThat((Object) response.path("status")).as("Status").isEqualTo("draft");
+        softly.assertThat((Object) response.path("status")).as("Status").isEqualTo("drafttttt");
 
         // Check content-type
         String contentType = response.getHeader("Content-Type");
@@ -77,7 +74,6 @@ public class ApiTests {
 
         System.out.println("Update Post finished");
         softly.assertAll();
-
 
     }
 
